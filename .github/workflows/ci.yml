@@ -1,0 +1,16 @@
+name: GameFix CI
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Instalar Dependências
+        run: pip install -r requirements.txt
+      - name: Verificar erros de sintaxe
+        run: python -m py_compile app.py

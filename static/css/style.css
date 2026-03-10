@@ -1,0 +1,150 @@
+:root {
+    --primary: #0070d1; /* Azul PlayStation */
+    --bg-dark: #0b0e14; 
+    --card: rgba(22, 27, 34, 0.95);
+    --text-white: #ffffff;
+    --text-dim: #d1d5db;
+    --green: #25d366;
+}
+
+/* Configuração do Corpo com Fundo Infinito de Botões */
+body {
+    background-color: var(--bg-dark);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-white);
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* O PADRÃO DE BOTÕES EM TODA A PÁGINA */
+body::before {
+    content: "△ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □ △ ◯ ✖ □";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 42px;
+    letter-spacing: 35px;
+    line-height: 130px;
+    color: rgba(255, 255, 255, 0.02); /* Suave para relevo */
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.05), -1px -1px 0px rgba(0,0,0,0.8);
+    z-index: -1;
+    pointer-events: none;
+    text-align: center;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.container { max-width: 1000px; margin: 0 auto; padding: 0 20px; flex: 1; }
+
+/* CABEÇALHO NEON */
+header { text-align: center; padding: 80px 0 40px; }
+header h1 { 
+    font-size: 4.5rem; 
+    margin: 0; 
+    letter-spacing: 4px; 
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+}
+header h1 span { 
+    color: var(--primary); 
+    text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary); 
+}
+header p { color: #fff; font-size: 1.1rem; margin-top: 15px; font-weight: 400; }
+
+/* BOX DE ALERTA */
+.warning-box {
+    background: rgba(255, 77, 77, 0.1);
+    border: 2px solid #ff4d4d;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 40px 0;
+    text-align: center;
+}
+.warning-box h2 { color: #fff; text-transform: uppercase; margin: 0 0 10px 0; }
+
+/* SERVIÇOS */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+.card:hover { border-color: var(--primary); transform: translateY(-5px); }
+.card h3 { color: #fff; margin-bottom: 10px; }
+.card p { color: var(--text-dim); }
+
+/* FAQ RETRÁTIL */
+.faq-section { margin: 60px 0; }
+.faq-item { 
+    background: var(--card); 
+    margin-bottom: 12px; 
+    border-radius: 10px; 
+    border: 1px solid rgba(255,255,255,0.1); 
+    overflow: hidden; 
+}
+.faq-question { 
+    padding: 20px; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: space-between; 
+    font-weight: bold; 
+    color: #fff;
+}
+.faq-answer { 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: 0.4s ease-out; 
+    background: rgba(0,0,0,0.3); 
+}
+.faq-answer.active { max-height: 500px; padding: 15px 20px; }
+
+/* BOTÃO WHATSAPP */
+#btnWhatsapp {
+    background: var(--green);
+    color: #000;
+    border: none;
+    padding: 20px 50px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    border-radius: 50px;
+    cursor: pointer;
+    display: block;
+    margin: 50px auto;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+#btnWhatsapp:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(37, 211, 102, 0.4); }
+
+/* RODAPÉ MINIMALISTA TRANSPARENTE */
+footer {
+    text-align: center;
+    padding: 60px 0 30px;
+    background: transparent;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-links { margin-bottom: 20px; }
+.footer-links a { 
+    color: var(--primary); 
+    text-decoration: none; 
+    margin: 0 15px; 
+    font-weight: bold; 
+    font-size: 0.9rem;
+    text-shadow: 0 0 10px rgba(0, 112, 209, 0.3);
+}
+.copyright { 
+    font-size: 0.8rem; 
+    color: rgba(255, 255, 255, 0.4); 
+    letter-spacing: 1px;
+}
