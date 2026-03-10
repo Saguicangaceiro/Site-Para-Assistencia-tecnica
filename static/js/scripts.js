@@ -17,6 +17,6 @@ function toggleFaq(element) {
 // Botão do WhatsApp
 document.getElementById('btnWhatsapp').onclick = function() {
     const telefone = "5511999999999"; // Substitua pelo seu número
-    const texto = encodeURIComponent("Olá! Vi o site da GameFix e gostaria de um orçamento para o meu console.");
+    const texto = encodeURIComponent("Olá! Vim do site da GameFix e gostaria de um orçamento para o meu console.");
     window.open(`https://wa.me/${telefone}?text=${texto}`, '_blank');
 };

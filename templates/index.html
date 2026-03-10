@@ -18,21 +18,21 @@
     <main class="container">
         <section class="warning-box">
             <h2>🔥 Superaquecimento Mata o seu Game</h2>
-            <p>Não espere seu console desligar sozinho. A manutenção preventiva evita a queima da placa principal e danos irreversíveis.</p>
+            <p>A poeira acumulada é a maior inimiga da nova geração. Faça sua manutenção preventiva hoje!</p>
         </section>
 
         <section class="services-grid">
             {% for c in consoles %}
             <div class="card">
-                <span style="font-size: 3rem; display: block;">{{ c.icone }}</span>
+                <img src="{{ url_for('static', filename=c.imagem) }}" alt="{{ c.nome }}" class="card-image">
                 <h3>{{ c.nome }}</h3>
                 <p>{{ c.info }}</p>
             </div>
             {% endfor %}
         </section>
 
-        <section class="faq-section">
-            <h2 style="text-align: center; margin-bottom: 30px;">📋 Informações e Dúvidas</h2>
+        <section class="faq-section" style="margin-top: 60px;">
+            <h2 style="text-align: center; margin-bottom: 30px;">📋 Informações Importantes</h2>
             {% for item in faq %}
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
@@ -52,18 +52,14 @@
     <footer>
         <div class="container">
             <h3 style="text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px;">{{ empresa.nome }}</h3>
-            
             <div class="footer-links">
                 <a href="#">INSTAGRAM</a>
                 <a href="#">GOOGLE MAPS</a>
                 <a href="#">WHATSAPP</a>
             </div>
-
             <div class="copyright">
-                <p>&copy; 2026 Antônio Marcos. Todos os direitos reservados.</p>
-                <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">
-                    PlayStation e Xbox são marcas registradas de seus respectivos proprietários.
-                </p>
+                <p>&copy; 2026 GameFix Reparos. Todos os direitos reservados.</p>
+                <p style="font-size: 0.7rem; opacity: 0.5;">PlayStation e Xbox são marcas de seus respectivos donos.</p>
             </div>
         </div>
     </footer>
@@ -73,7 +69,6 @@
             const resposta = elemento.nextElementSibling;
             const seta = elemento.querySelector('.seta');
             
-            // Fecha outros FAQs abertos
             document.querySelectorAll('.faq-answer').forEach(el => {
                 if (el !== resposta) {
                     el.classList.remove('active');
