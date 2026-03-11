@@ -16,33 +16,33 @@ def home():
         {
             "nome": "PlayStation 2/3", 
             "imagem": "images/ps.png", 
-            "info": "Troca de lentes, rebaling e prevenção de luzes amarelas/vermelhas."
+            "info": "Troca de leitores, rebaling, prevenção das luzes amarelas/vermelhas, manutenção preveniva do aparelho e etc."
         },
         {
             "nome": "PlayStation 4/5", 
             "imagem": "images/Ps5.png", 
-            "info": "Limpeza completa, Metal Líquido (PS5), HDMI e upgrade SSD."
+            "info": "Manutenção corretiva, rebaling, Metal Líquido (PS5), HDMI e upgrade SSD e etc."
         },
         {
             "nome": "Xbox 360", 
             "imagem": "images/xbox.png", 
-            "info": "Prevenção de 3RL, troca de leitor e reparo de drives."
+            "info": "Prevenção de 3RL, troca de leitor e HD, reparo de drives e coreção da luz vermelha e etc."
         },
         {
             "nome": "Xbox One / S ", 
             "imagem": "images/ONE.png", 
-            "info": "Reparo de fonte interna, troca de HD por SSD e limpeza térmica."
+            "info": "Reparo de fonte interna, troca de HD por SSD e limpeza térmica, manutenção preventiva e etc."
         },
         {
             "nome": "Xbox Series S / X", 
             "imagem": "images/x.png", 
-            "info": "Manutenção de fluxo de ar e reparo de portas HDMI 2.1."
+            "info": "Manutenção de fluxo de ar e reparo de portas HDMI 2.1 e etc."
         },
         {
             "nome": "PC Gamer", 
             "imagem": "images/PC.png", 
-            "info": "Montagem, cable management e otimização de performance."
-        }
+            "info": "Montagem, cable management (organização dos cabos) e otimização de performance, troca de memória, upgrade de SSD e etc."
+        },
     ]
     
     faq = [
@@ -58,4 +58,4 @@ def home():
     return render_template('index.html', consoles=consoles, faq=faq, empresa=empresa)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
