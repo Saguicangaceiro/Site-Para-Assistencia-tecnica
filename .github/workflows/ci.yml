@@ -1,16 +1,59 @@
-name: GameFix CI
-on: [push]
+name: Python Flask CI and Docker Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Instalar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Instalar Dependências
-        run: pip install -r requirements.txt
-      - name: Verificar erros de sintaxe
-        run: python -m py_compile app.py
+    # 1. Baixa o código do repositório para a máquina virtual do GitHub
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. Configura a versão do Python desejada (ex: 3.10)
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    # 3. Faz o cache das dependências do pip para deixar as próximas execuções mais rápidas
+    - name: Cache pip
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    # 4. Instala as dependências do seu projeto Flask
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    # 5. Verifica se há erros de sintaxe ou padrões ruins de código (opcional)
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings.
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+  docker-test:
+    runs-on: ubuntu-latest
+    needs: build-and-test # Só roda se o teste de cima passar
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 6. Tenta construir a sua imagem Docker para validar se o seu dockerfile está saudável
+    - name: Build Docker Image
+      run: |
+        docker build -t site-assistencia:latest .
