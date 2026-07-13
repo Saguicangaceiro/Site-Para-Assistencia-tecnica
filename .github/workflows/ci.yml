@@ -11,19 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Baixa o código do repositório para a máquina virtual do GitHub
+    # 1. Checkout atualizado para @v4.3.0+ (ou você pode usar @main para pegar a última)
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2
 
-    # 2. Configura a versão do Python desejada (ex: 3.10)
+    # 2. Setup Python atualizado para @v5.3.0+ (garantindo compatibilidade)
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v5.3.0
       with:
         python-version: '3.10'
 
-    # 3. Faz o cache das dependências do pip para deixar as próximas execuções mais rápidas
+    # 3. Cache atualizado para @v4.2.0+
     - name: Cache pip
-      uses: actions/cache@v4
+      uses: actions/cache@v4.2.0
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -36,7 +36,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    # 5. Verifica se há erros de sintaxe ou padrões ruins de código (opcional)
+    # 5. Verifica se há erros de sintaxe ou padrões ruins de código
     - name: Lint with flake8
       run: |
         pip install flake8
@@ -47,11 +47,11 @@ jobs:
 
   docker-test:
     runs-on: ubuntu-latest
-    needs: build-and-test # Só roda se o teste de cima passar
+    needs: build-and-test
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2
 
     # 6. Tenta construir a sua imagem Docker para validar se o seu dockerfile está saudável
     - name: Build Docker Image
